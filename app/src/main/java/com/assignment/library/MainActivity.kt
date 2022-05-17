@@ -1,18 +1,16 @@
 package com.assignment.library
 
+import android.animation.Animator
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
 import com.assignment.library.databinding.ActivityMainBinding
+
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
+    private var isFABOpen = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,19 +20,44 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.toolbar)
 
-        val navController = findNavController(R.id.nav_host_fragment_content_main)
-        appBarConfiguration = AppBarConfiguration(navController.graph)
-        setupActionBarWithNavController(navController, appBarConfiguration)
-
         binding.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+
+            if(!isFABOpen){
+                showFABMenu();
+            }else{
+                closeFABMenu();
+            }
+            isFABOpen = !isFABOpen
         }
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.nav_host_fragment_content_main)
-        return navController.navigateUp(appBarConfiguration)
-                || super.onSupportNavigateUp()
+
+    private fun showFABMenu() {
+        binding.fabLayout1.visibility = View.VISIBLE
+        binding.fabLayout2.visibility = View.VISIBLE
+        binding.fabBGLayout.visibility = View.VISIBLE
+        binding.fab.animate().rotationBy(180F)
+        binding.fabLayout1.animate().translationY(-resources.getDimension(R.dimen.standard_75))
+        binding.fabLayout2.animate().translationY(-resources.getDimension(R.dimen.standard_120))
+    }
+
+    private fun closeFABMenu() {
+        binding.fabBGLayout.visibility = View.GONE
+        binding.fab.animate().rotation(0F)
+        binding.fabLayout1.animate().translationY(0f)
+        binding.fabLayout2.animate().translationY(0f)
+            .setListener(object : Animator.AnimatorListener {
+                override fun onAnimationStart(animator: Animator) {}
+                override fun onAnimationEnd(animator: Animator) {
+                    if (View.GONE == binding.fabBGLayout.visibility) {
+                        binding.fabLayout1.visibility = View.GONE
+                        binding.fabLayout2.visibility = View.GONE
+                    }
+                }
+
+                override fun onAnimationCancel(animator: Animator) {}
+                override fun onAnimationRepeat(animator: Animator) {}
+            })
+
     }
 }
