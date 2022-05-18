@@ -4,9 +4,13 @@
 
     <application>
         <activity
+            android:name=".responsive.ResponsiveViewActivity"
+            android:exported="false"
+            android:label="@string/responsive" />
+        <activity
             android:name=".chat.ChatActivity"
             android:exported="false"
-            android:label="@string/chat_title"/>
+            android:label="@string/chat_title" />
     </application>
 
 </manifest>

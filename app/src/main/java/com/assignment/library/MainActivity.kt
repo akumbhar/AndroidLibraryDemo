@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.assignment.demonativelibrary.chat.ChatActivity
+import com.assignment.demonativelibrary.responsive.ResponsiveViewActivity
 import com.assignment.library.databinding.ActivityMainBinding
 
 
@@ -34,6 +35,11 @@ class MainActivity : AppCompatActivity() {
 
         binding.fab1.setOnClickListener { view ->
             Intent(this, ChatActivity::class.java).apply {
+                startActivity(this)
+            }
+        }
+        binding.fab2.setOnClickListener { view ->
+            Intent(this, ResponsiveViewActivity::class.java).apply {
                 startActivity(this)
             }
         }
