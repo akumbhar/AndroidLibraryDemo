@@ -45,10 +45,9 @@ afterEvaluate {
         publications {
             release(MavenPublication) {
                 from components.release
-
                 groupId = 'com.github.akumbhar'
                 artifactId = 'android-libary-assignment'
-                version = '1.0.0'
+                version = '1.0.1'
             }
         }
     }
