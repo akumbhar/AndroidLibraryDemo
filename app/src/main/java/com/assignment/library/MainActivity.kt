@@ -1,9 +1,11 @@
 package com.assignment.library
 
 import android.animation.Animator
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.assignment.demonativelibrary.chat.ChatActivity
 import com.assignment.library.databinding.ActivityMainBinding
 
 
@@ -28,6 +30,12 @@ class MainActivity : AppCompatActivity() {
                 closeFABMenu();
             }
             isFABOpen = !isFABOpen
+        }
+
+        binding.fab1.setOnClickListener { view ->
+            Intent(this, ChatActivity::class.java).apply {
+                startActivity(this)
+            }
         }
     }
 
