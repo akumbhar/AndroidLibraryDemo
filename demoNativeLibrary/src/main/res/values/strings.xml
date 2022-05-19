@@ -1,0 +1,6 @@
+<resources>
+    <string name="message">Message</string>
+    <string name="chat_title">Chat</string>
+    <string name="chat_message">Hello there.\nChat with me!!</string>
+    <string name="responsive">Responsive</string>
+</resources>
