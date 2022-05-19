@@ -7,24 +7,27 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.assignment.demonativelibrary.R
-import com.assignment.demonativelibrary.responsive.FactsAdapter.*
+import com.assignment.demonativelibrary.responsive.FactsAdapter.FactsViewHolder
+import com.bumptech.glide.Glide
 
-class FactsAdapter(val factList: List<Row>) : RecyclerView.Adapter<FactsViewHolder>() {
+class FactsAdapter(private val factList: List<Row>) : RecyclerView.Adapter<FactsViewHolder>() {
 
 
+    inner class FactsViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
 
-    inner class FactsViewHolder(val view:View): RecyclerView.ViewHolder(view){
+        private val txtTitle: TextView = view.findViewById(R.id.newsTitle)
+        private val txtDescription: TextView = view.findViewById(R.id.txtFactDescription)
+        private val imgFact: ImageView = view.findViewById(R.id.imgFact)
 
-        val txtTitle: TextView = view.findViewById<TextView>(R.id.txtFactTitle)
-        val txtDescription: TextView = view.findViewById<TextView>(R.id.txtFactDescription)
-        val imgFact: ImageView = view.findViewById<ImageView>(R.id.imgFact)
-
-        fun setValues(fact:Row){
-
-            with(fact){
-                    txtTitle.text = title
-                    txtDescription.text = description
+        fun setValues(fact: Row) {
+            with(fact) {
+                txtDescription.text = description
+                txtTitle.text = title
+                Glide.with(imgFact)
+                    .load(imageHref)
+                    .into(imgFact)
             }
+
         }
     }
 

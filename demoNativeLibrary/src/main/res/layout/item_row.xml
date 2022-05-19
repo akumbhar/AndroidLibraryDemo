@@ -1,55 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="8dp">
+    android:layout_margin="@dimen/card_margin"
+    android:background="@color/colorIcons">
 
-    <androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    <androidx.cardview.widget.CardView
         android:id="@+id/card_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        card_view:cardCornerRadius="4dp"
-        card_view:cardUseCompatPadding="true"
-        card_view:elevation="1dp">
+        android:layout_gravity="center"
+        android:elevation="3dp"
 
-        <RelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+        android:padding="@dimen/card_view_margin"
+        card_view:cardCornerRadius="@dimen/card_radius">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imgFact"
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:scaleType="centerCrop" />
+
 
             <TextView
-                android:id="@+id/txtFactTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:textAppearance="?attr/textAppearanceListItem"
-                android:textStyle="bold" />
-
-            <LinearLayout
+                android:id="@+id/newsTitle"
+                style="@style/TextAppearance.AppCompat.Subhead"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/txtFactTitle"
-                android:orientation="horizontal">
+                android:layout_below="@+id/imgFact"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="@dimen/_8dp"
+                android:padding="@dimen/_8dp"
+                android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/txtFactDescription"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_weight="70" />
+            <TextView
+                android:id="@+id/txtFactDescription"
+                style="@style/TextAppearance.AppCompat.Subhead"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/newsTitle"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="@dimen/_8dp"
+                android:layout_marginBottom="@dimen/_8dp"
+                android:padding="@dimen/_8dp"
 
-                <ImageView
-                    android:id="@+id/imgFact"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_weight="30"
-                    app:srcCompat="@drawable/send" />
+                />
 
-            </LinearLayout>
         </RelativeLayout>
+
     </androidx.cardview.widget.CardView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
